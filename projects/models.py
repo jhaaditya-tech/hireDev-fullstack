@@ -1,8 +1,10 @@
 from django.db import models
 import uuid
+from users.models import Profile
 
 # Create your models here.
 class Project(models.Model):
+    owner = models.ForeignKey(Profile, null=True, blank=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank =True) #NULL by default is false, this is not a required field.
     featured_image = models.ImageField(null=True, blank=True, default='default.png') #Setting default image if user doesn't upload the image
